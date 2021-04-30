@@ -2,9 +2,10 @@ import { Header } from "./components/Header";
 import { Dashboard } from "./components/Dashboard";
 import { useState } from "react";
 import { GlobalStyle } from "./styles/global";
+import { NewTransactionModal } from "./components/NewTransactionModal";
+import { TransactionsProvider } from "./TransactionsContext";
 
 import Modal from "react-modal";
-import { NewTransactionModal } from "./components/NewTransactionModal";
 
 Modal.setAppElement("#root");
 interface TransactionsModal {
@@ -23,7 +24,7 @@ export function App() {
   }
 
   return (
-    <>
+    <TransactionsProvider>
       <Header onOpenNewTransactionMondal={handleOpenNewTransactionModal} />
       <NewTransactionModal
         isOpen={newTransactionModal}
@@ -31,9 +32,6 @@ export function App() {
       />
       <Dashboard />
       <GlobalStyle />
-    </>
+    </TransactionsProvider>
   );
-  // protocolos da reclamação da multa de auto-religação na energia!
-  // 75945386 -> atendimento enel da maquina dia 30/03/2021
-  // 75946470 -> financeiro enel 30/03/2021
 }
